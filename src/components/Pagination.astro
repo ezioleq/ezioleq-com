@@ -1,0 +1,32 @@
+---
+interface Props {
+  prevUrl?: string;
+  nextUrl?: string;
+}
+
+const { prevUrl, nextUrl } = Astro.props;
+---
+
+<nav
+  class="pagination"
+  style="display: flex; justify-content: space-between; margin-top: 3rem;"
+>
+  {
+    prevUrl ? (
+      <a href={prevUrl} class="btn">
+        &larr; Newer Posts
+      </a>
+    ) : (
+      <span />
+    )
+  }
+  {
+    nextUrl ? (
+      <a href={nextUrl} class="btn">
+        Older Posts &rarr;
+      </a>
+    ) : (
+      <span />
+    )
+  }
+</nav>

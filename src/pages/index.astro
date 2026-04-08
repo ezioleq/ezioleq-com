@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PostPreview from "../components/PostPreview.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("posts", ({ data }) => {
+  return import.meta.env.DEV || data.published !== false;
+});
+const recentPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<Layout title="ezioleq">
+  <section class="about-me">
+    <h2>Hello!</h2>
+    <p>
+      I'm a fairly young computer science enthusiast from Poland. My main
+      intrests include <a href="https://github.com/ezioleq" target="_blank"
+        >software programming</a
+      >, <a href="https://ezioleq.itch.io/" target="_blank">game development</a> and
+      thinkering with hardware, that includes 3D printing and electronics.
+    </p>
+    <p>
+      From time to time I also fiddle with photography, <a
+        href="https://soundcloud.com/ezioleq/likes"
+        target="_blank">listen to weird underground music</a
+      >
+      and <a href="https://steamcommunity.com/id/ezioleq">play video games</a>.
+      I'm eager to share my knowledge and have high ambitions which motivates me
+      to constantly learn new things.
+    </p>
+  </section>
+
+  <section class="contact-section">
+    <h2>Contact</h2>
+    <ul>
+      <li>email: [EMAIL_ADDRESS]</li>
+      <li>discord: ezioleq</li>
+    </ul>
+  </section>
+
+  <section class="recent-posts" style="margin-top: 2.5rem;">
+    <h2>Recent Posts</h2>
+    <div class="post-list">
+      {recentPosts.map((post) => <PostPreview post={post} />)}
+    </div>
+    <div class="archive-link" style="margin-top: 2rem; text-align: right;">
+      <a href="/posts" class="btn"> View All Posts &rarr; </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,88 @@
+---
+title: "Markdown Features Overview"
+description: "A showcase of the custom markdown elements built for this ultra-fast, minimal blog."
+pubDate: "2026-03-26"
+published: false
+---
+
+Welcome to the feature showcase! This blog is designed to be highly readable, strongly typographic, and ultra-fast. It fully supports standard Markdown rendering, alongside rich interactive components via MDX.
+
+<Sidenote>
+  Marginalias (Sidenotes) appear here on large screens and wrap below standard text blocks on mobile devices. They're excellent for providing context without breaking flow!
+</Sidenote>
+
+## Text and Typography
+
+We prioritize system fonts for performance and a native feel. You'll notice simple, high-contrast dark-mode typography (or light mode depending on your toggle).
+
+Here is a blockquote:
+> Software development is an exercise in managing complexity. Keep things simple natively, and you avoid creating problems to solve. 
+
+## Code Highlighting
+
+Syntax highlighting is powered by Shiki, which ensures your examples are perfectly colorized at build time:
+
+```javascript
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+  return true;
+}
+
+// Check this out
+greet('ezioleq');
+```
+
+## Custom Components
+
+Beyond standard Markdown, we've enabled three distinct MDX elements.
+
+### Colorized Callouts
+
+Use Callouts to draw attention to critical information:
+
+<Callout type="info" title="Information">
+  Astro allows us to weave React-like components directly into our markdown without shipping JavaScript to the client!
+</Callout>
+
+<Callout type="warning" title="Watch out!">
+  Remember to close your MDX tags. Unlike standard markdown, MDX will fail the build if you leave tags unclosed.
+</Callout>
+
+<Callout type="error" title="Something went wrong">
+  This is an error callout.
+</Callout>
+
+### Foldable Areas
+
+If you have supplementary information that shouldn't take up visual space initially, use the Foldable component!
+
+<Foldable title="Click to unveil hidden secrets">
+  You found me! This area uses native HTML details and summary under the hood, ensuring it works perfectly even before any JavaScript runs, although we styled it nicely to match the theme.
+
+  <Callout type="info" title="Information">
+    Callout inside foldable element
+  </Callout>
+</Foldable>
+
+## Tables
+
+And finally, neatly formatted tables:
+
+| Feature | Support | Note |
+| --- | --- | --- |
+| Callouts | **Yes** | 3 different types |
+| Foldables | **Yes** | Fully styled |
+| Marginalias | **Yes** | Responsive behavior |
+| Custom Images | **Yes** | Styled with elegant captions |
+
+## Rich Media
+
+Embedding images with contextual captions is crucial for a great blog. Use the `Figure` component!
+
+<Figure 
+  src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=720&auto=format&fit=crop" 
+  alt="Abstract glowing architecture structure" 
+  caption="An example of beautiful architectural geometry demonstrating the robust Figure component." 
+/>
+
+Happy writing!

@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import PostPreview from "../../components/PostPreview.astro";
+import Pagination from "../../components/Pagination.astro";
+import type { Page } from "astro";
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const allPosts = await getCollection("posts", ({ data }) => {
+    return import.meta.env.DEV || data.published !== false;
+  });
+
+  allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return paginate(allPosts, { pageSize: 5 });
+}
+
+interface Props {
+  page: Page<any>;
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title={`ezioleq - Posts`}>
+  <h2>All Posts</h2>
+  <div class="post-list" style="margin-top: 2rem;">
+    {page.data.map((post: any) => <PostPreview post={post} />)}
+  </div>
+
+  <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+</Layout>

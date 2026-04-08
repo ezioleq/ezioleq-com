@@ -1,0 +1,16 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+
+<figure class="custom-figure">
+  <a href={src} target="_blank" rel="noopener noreferrer">
+    <img src={src} alt={alt} />
+  </a>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

@@ -1,0 +1,52 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Sidenote from "../../components/Sidenote.astro";
+import Callout from "../../components/Callout.astro";
+import Foldable from "../../components/Foldable.astro";
+import Figure from "../../components/Figure.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => {
+    return import.meta.env.DEV || data.published !== false;
+  });
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(post);
+const { wordCount, readingTime } = remarkPluginFrontmatter || {};
+---
+
+<Layout title={`${post.data.title} - ezioleq`}>
+  <article class="blog-post">
+    <header
+      style="display: block; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);"
+    >
+      <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{post.data.title}</h1>
+      <div style="color: var(--text-muted); font-size: 0.9em;">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {
+            post.data.pubDate.toLocaleDateString("en-us", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })
+          }
+        </time>
+        <span style="margin: 0 0.5rem; opacity: 0.5;">&bull;</span>
+        <span
+          >{readingTime || 1} min read <span style="opacity: 0.7;"
+            >({wordCount || 0} words)</span
+          ></span
+        >
+      </div>
+    </header>
+    <div class="post-content">
+      <Content components={{ Sidenote, Callout, Foldable, Figure }} />
+    </div>
+  </article>
+</Layout>
