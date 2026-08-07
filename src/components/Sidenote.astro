@@ -7,3 +7,52 @@
     <slot />
   </aside>
 </div>
+
+<style>
+  .sidenote-wrapper {
+    position: relative;
+    display: inline;
+  }
+
+  /* Floating to the right margin of standard text container */
+  .sidenote {
+    float: right;
+    clear: right;
+    margin-right: -50%;
+    width: 45%;
+    margin-top: 0;
+    /* margin-bottom: 1.5rem; */
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    background: var(
+      --bg-color
+    ); /* ensures it doesn't bleed behind lines if overlapping */
+  }
+
+  /* Match inline code snippets to the smaller sidenote typography */
+  .sidenote code {
+    font-size: 0.85em;
+  }
+
+  /* Ensure global markdown tags inside the sidenote maintain unified lower pad/margins */
+  .sidenote > *:first-child {
+    margin-top: 0;
+  }
+  .sidenote > *:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1250px) {
+    .sidenote {
+      float: none;
+      display: block;
+      margin: 1.5rem 0rem;
+      width: 100%;
+      padding: 0 1rem;
+      border-left: 4px solid var(--border-color);
+      background: transparent;
+      font-size: 0.9rem;
+    }
+  }
+</style>

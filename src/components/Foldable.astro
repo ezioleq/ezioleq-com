@@ -12,3 +12,48 @@ const { title } = Astro.props;
     <slot />
   </div>
 </details>
+
+<style>
+  details {
+    background: var(--code-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+  }
+
+  summary {
+    cursor: pointer;
+    /* font-weight: 600; */
+    color: var(--text-color);
+    padding: 0.25rem 0;
+    list-style: none; /* Hide default arrow in some browsers */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::before {
+    content: "▶";
+    font-size: 0.8em;
+    transition: transform 0.2s;
+    color: var(--text-muted);
+  }
+
+  details[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  details[open] summary {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+  }
+
+  details > *:last-child {
+    margin-bottom: -1rem;
+  }
+</style>

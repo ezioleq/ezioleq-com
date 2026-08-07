@@ -5,7 +5,7 @@ pubDate: "2026-03-26"
 published: false
 ---
 
-Welcome to the feature showcase! This blog is designed to be highly readable, strongly typographic, and ultra-fast. It fully supports standard Markdown rendering, alongside rich interactive components via MDX.
+Welcome to the feature showcase! This blog is designed to be highly readable, strongly typographic, and ultra-fast. It fully supports [standard Markdown rendering](https://ezioleq.com), alongside rich interactive components via MDX.
 
 <Sidenote>
   Marginalias (Sidenotes) appear here on large screens and wrap below standard text blocks on mobile devices. They're excellent for providing context without breaking flow!
@@ -30,6 +30,28 @@ function greet(name) {
 
 // Check this out
 greet('ezioleq');
+```
+
+```yml
+# ...
+on: push # run on every push to the repository
+
+jobs:
+  build:
+    # ...
+    steps:
+      - uses: actions/checkout@v3 # get the source code
+        with:
+          submodules: true # true because, we use them for themes
+          # ...
+
+      - name: Setup Hugo # guess what it does
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest' # use latest version of Hugo
+
+      - name: Build # let's see if it explodes
+        run: hugo --minify
 ```
 
 ## Custom Components
@@ -62,6 +84,8 @@ If you have supplementary information that shouldn't take up visual space initia
   <Callout type="info" title="Information">
     Callout inside foldable element
   </Callout>
+
+  Testing test of text on the end of an foldable element.
 </Foldable>
 
 ## Tables
@@ -71,9 +95,9 @@ And finally, neatly formatted tables:
 | Feature | Support | Note |
 | --- | --- | --- |
 | Callouts | **Yes** | 3 different types |
-| Foldables | **Yes** | Fully styled |
+| Foldables | Yes | Fully styled |
 | Marginalias | **Yes** | Responsive behavior |
-| Custom Images | **Yes** | Styled with elegant captions |
+| Custom Images | Yes | Styled with elegant captions |
 
 ## Rich Media
 
