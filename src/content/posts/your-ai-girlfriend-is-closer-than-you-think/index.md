@@ -5,10 +5,10 @@ pubDate: "2023-09-12T18:06:14+02:00"
 published: true
 tags: ["random", "ai"]
 ---
-
 Are you lonely? I can fix that. Just lend me your compute power.
-
 <!--more-->
+
+![You look lonely. I can fix that.](./you-look-lonely.webp)
 
 I really wanted to use this paraphrased quote from the [Blade Runner 2049][bladerunner2049].
 
