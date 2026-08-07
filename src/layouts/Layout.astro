@@ -61,6 +61,17 @@ const { title = "ezioleq" } = Astro.props;
           navigator.clipboard.writeText(fullUrl);
         });
       });
+
+      // Point figure image links at their rendered (optimized) full-size file,
+      // so Markdown images and <Figure> open the same way in a new tab.
+      document
+        .querySelectorAll<HTMLAnchorElement>(
+          "figure.custom-figure a.figure-link",
+        )
+        .forEach((a) => {
+          const img = a.querySelector("img");
+          if (img && img.getAttribute("src")) a.href = img.src;
+        });
     </script>
   </body>
 </html>

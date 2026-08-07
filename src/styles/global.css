@@ -308,3 +308,29 @@ th {
 tr:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Figures: shared by the <Figure> component and Markdown images
+   (wrapped by the rehype-figures plugin) so both look and behave the same. */
+figure.custom-figure {
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+figure.custom-figure a.figure-link {
+  display: block;
+}
+
+figure.custom-figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-style: italic;
+}

@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { rehypeFigures } from './src/plugins/rehype-figures.js';
 
 function remarkReadingTime() {
   return function (tree, file) {
@@ -19,10 +20,15 @@ function remarkReadingTime() {
 // https://astro.build/config
 export default defineConfig({
   integrations: [mdx()],
+  image: {
+    layout: 'constrained',
+    responsiveStyles: true,
+  },
   markdown: {
     remarkPlugins: [remarkReadingTime],
     rehypePlugins: [
       rehypeSlug,
+      rehypeFigures,
       [rehypeAutolinkHeadings, {
         behavior: 'wrap',
         properties: {
