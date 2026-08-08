@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import PostPreview from "../components/PostPreview.astro";
 import { getCollection } from "astro:content";
 import { Content as HomeContent } from "../content/home.mdx";
+import { Content as ContactContent } from "../content/contact.mdx";
 
 const allPosts = await getCollection("posts", ({ data }) => {
   return import.meta.env.DEV || data.published !== false;
@@ -17,13 +18,19 @@ const recentPosts = allPosts
     <HomeContent />
   </div>
 
-  <section class="recent-posts" style="margin-top: 2.5rem;">
-    <h2>Recent Posts</h2>
-    <div class="post-list">
-      {recentPosts.map((post) => <PostPreview post={post} />)}
-    </div>
-    <div class="archive-link" style="margin-top: 2rem; text-align: right;">
-      <a href="/posts" class="btn"> View All Posts &rarr; </a>
-    </div>
-  </section>
+  <div class="post-content">
+    <section class="recent-posts" style="margin-top: 2.5rem;">
+      <h2>Recent Posts</h2>
+      <div class="post-list">
+        {recentPosts.map((post) => <PostPreview post={post} />)}
+      </div>
+      <div class="archive-link" style="margin-top: 2rem; text-align: right;">
+        <a href="/posts" class="btn"> View All Posts &rarr; </a>
+      </div>
+    </section>
+  </div>
+
+  <div class="post-content">
+    <ContactContent />
+  </div>
 </Layout>
