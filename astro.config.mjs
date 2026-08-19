@@ -19,6 +19,7 @@ function remarkReadingTime() {
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://ezioleq.com',
   integrations: [mdx()],
   image: {
     layout: 'constrained',

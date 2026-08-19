@@ -16,6 +16,7 @@ const { title = "ezioleq" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="ezioleq" href="/index.xml" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -46,7 +47,9 @@ const { title = "ezioleq" } = Astro.props;
         <div class="copyright">
           &copy; {new Date().getFullYear()} ezioleq. Licensed under CC BY-NC 4.0.
         </div>
-        <div class="footer-links"></div>
+        <div class="footer-links">
+          <a href="/index.xml">RSS</a>
+        </div>
       </footer>
     </div>
 
