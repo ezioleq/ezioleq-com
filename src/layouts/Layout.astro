@@ -2,12 +2,26 @@
 import "../styles/fonts.css";
 import "../styles/global.css";
 import SocialLinks from "../components/SocialLinks.astro";
+import { SITE_TITLE, SITE_DESCRIPTION, OG_IMAGE_PATH } from "../consts";
 
 interface Props {
   title?: string;
+  ogTitle?: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
 }
 
-const { title = "ezioleq" } = Astro.props;
+const {
+  title = SITE_TITLE,
+  ogTitle = title,
+  description = SITE_DESCRIPTION,
+  image = OG_IMAGE_PATH,
+  type = "website",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
 ---
 
 <!doctype html>
@@ -16,9 +30,22 @@ const { title = "ezioleq" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" type="application/rss+xml" title="ezioleq" href="/index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="ezioleq"
+      href="/index.xml"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={imageURL} />
   </head>
   <body>
     <div class="layout-container">

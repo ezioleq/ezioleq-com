@@ -21,7 +21,12 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 const { wordCount, readingTime } = remarkPluginFrontmatter || {};
 ---
 
-<Layout title={`${post.data.title} - ezioleq`}>
+<Layout
+  title={`${post.data.title} - ezioleq`}
+  ogTitle={post.data.title}
+  description={post.data.description}
+  type="article"
+>
   <article class="blog-post">
     <header
       style="display: block; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);"
