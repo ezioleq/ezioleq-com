@@ -6,12 +6,14 @@ import Pagination from "../../components/Pagination.astro";
 import type { Page } from "astro";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const pageSize = 7;
+
   const allPosts = await getCollection("posts", ({ data }) => {
     return import.meta.env.DEV || data.published !== false;
   });
 
   allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  return paginate(allPosts, { pageSize: 5 });
+  return paginate(allPosts, { pageSize });
 }
 
 interface Props {
