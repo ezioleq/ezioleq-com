@@ -73,6 +73,7 @@ a:hover {
   color: var(--text-color) !important;
   font-weight: 500;
   cursor: pointer;
+  transition: border-color 0.1s;
 }
 
 .btn:hover {

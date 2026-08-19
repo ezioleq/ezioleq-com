@@ -24,10 +24,15 @@ const { page } = Astro.props;
 ---
 
 <Layout title={`ezioleq - Posts`}>
-  <h2>All Posts</h2>
-  <div class="post-list" style="margin-top: 2rem;">
-    {page.data.map((post: any) => <PostPreview post={post} />)}
-  </div>
+  <div class="post-content">
+    <h1>All Posts</h1>
+    <p>
+      There are {page.lastPage} pages and you're on the {page.currentPage}.
+    </p>
+    <div class="post-list" style="margin-top: 2rem;">
+      {page.data.map((post: any) => <PostPreview post={post} />)}
+    </div>
 
-  <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+  </div>
 </Layout>

@@ -14,16 +14,19 @@ const { prevUrl, nextUrl } = Astro.props;
   {
     prevUrl ? (
       <a href={prevUrl} class="btn">
-        &larr; Newer Posts
+        &lt Newer Posts
       </a>
     ) : (
-      <span />
+      <a class="btn" href="/#recent-posts">
+        &lt; Homepage
+      </a>
+      // <span />
     )
   }
   {
     nextUrl ? (
       <a href={nextUrl} class="btn">
-        Older Posts &rarr;
+        Older Posts &gt;
       </a>
     ) : (
       <span />
