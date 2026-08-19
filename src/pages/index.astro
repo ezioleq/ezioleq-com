@@ -16,11 +16,16 @@ const recentPosts = allPosts
 <Layout title="ezioleq">
   <div class="post-content">
     <HomeContent />
-  </div>
+    <ContactContent />
 
-  <div class="post-content">
     <section class="recent-posts" style="margin-top: 2.5rem;">
-      <h2>Recent Posts</h2>
+      <h2 id="recent-posts">
+        <a
+          class="heading-link"
+          href="#recent-posts"
+          title="Copy link to clipboard">Recent Posts</a
+        >
+      </h2>
       <div class="post-list">
         {recentPosts.map((post) => <PostPreview post={post} />)}
       </div>
@@ -28,9 +33,5 @@ const recentPosts = allPosts
         <a href="/posts" class="btn"> View All Posts &rarr; </a>
       </div>
     </section>
-  </div>
-
-  <div class="post-content">
-    <ContactContent />
   </div>
 </Layout>
