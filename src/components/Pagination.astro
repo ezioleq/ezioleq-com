@@ -2,14 +2,16 @@
 interface Props {
   prevUrl?: string;
   nextUrl?: string;
+  currentPage: number;
+  lastPage: number;
 }
 
-const { prevUrl, nextUrl } = Astro.props;
+const { prevUrl, nextUrl, currentPage, lastPage } = Astro.props;
 ---
 
 <nav
   class="pagination"
-  style="display: flex; justify-content: space-between; margin-top: 3rem;"
+  style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;"
 >
   {
     prevUrl ? (
@@ -20,7 +22,13 @@ const { prevUrl, nextUrl } = Astro.props;
       <a class="btn" href="/#recent-posts">
         &lt; Homepage
       </a>
-      // <span />
+    )
+  }
+  {
+    (
+      <p style="color: var(--text-muted);">
+        Page {currentPage} of {lastPage}
+      </p>
     )
   }
   {
@@ -29,7 +37,9 @@ const { prevUrl, nextUrl } = Astro.props;
         Older Posts &gt;
       </a>
     ) : (
-      <span />
+      <a href="/index.xml" class="btn">
+        Subscribe RSS
+      </a>
     )
   }
 </nav>

@@ -5,12 +5,13 @@ import { getCollection } from "astro:content";
 import { Content as HomeContent } from "../content/home.mdx";
 import { Content as ContactContent } from "../content/contact.mdx";
 
+const postLimit = 3;
 const allPosts = await getCollection("posts", ({ data }) => {
   return import.meta.env.DEV || data.published !== false;
 });
 const recentPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+  .slice(0, postLimit);
 ---
 
 <Layout title="ezioleq" ogTitle="Homepage">
@@ -28,7 +29,13 @@ const recentPosts = allPosts
       <div class="post-list">
         {recentPosts.map((post) => <PostPreview post={post} />)}
       </div>
-      <div class="archive-link" style="margin-top: 2rem; text-align: right;">
+      <div
+        style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;"
+      >
+        <a href="/index.xml" class="btn">Subscribe RSS</a>
+        <p style="color: var(--text-muted)">
+          Showing {postLimit} of {allPosts.length} posts
+        </p>
         <a href="/posts" class="btn"> View All Posts &gt;</a>
       </div>
     </section>
