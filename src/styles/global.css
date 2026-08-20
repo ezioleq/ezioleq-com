@@ -335,3 +335,8 @@ figure.custom-figure figcaption {
   text-align: center;
   font-style: italic;
 }
+
+::selection {
+  background: var(--link-color);
+  color: var(--bg-color);
+}
