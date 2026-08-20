@@ -33,8 +33,13 @@ const recentPosts = allPosts
         style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;"
       >
         <a href="/index.xml" class="btn">Subscribe RSS</a>
-        <p style="color: var(--text-muted)">
-          Showing {postLimit} of {allPosts.length} posts
+        <p style="color: var(--text-muted)" class="post-count">
+          <span class="post-count-full">
+            Showing {postLimit} of {allPosts.length} posts
+          </span>
+          <span class="post-count-short">
+            {postLimit} of {allPosts.length}
+          </span>
         </p>
         <a href="/posts" class="btn"> View All Posts &gt;</a>
       </div>
@@ -43,3 +48,19 @@ const recentPosts = allPosts
     <ContactContent />
   </div>
 </Layout>
+
+<style>
+  .post-count-short {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .post-count-full {
+      display: none;
+    }
+
+    .post-count-short {
+      display: inline;
+    }
+  }
+</style>
