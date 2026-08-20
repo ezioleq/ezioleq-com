@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const ogDescription = "The content you're looking for doesn't seem to exist :(";
+---
+
+<Layout
+  title="404 - ezioleq"
+  ogTitle="Page not found"
+  description={ogDescription}
+>
+  <div class="post-content">
+    <h1>404 Not Found</h1>
+    <p>Oops! Something bad happened.</p>
+    <p>The content you're looking for doesn't seem to exist :(</p>
+    <div style="display: flex; justify-content: flex-end;">
+      <a href="/" class="btn">Take me back home!</a>
+    </div>
+  </div>
+</Layout>
