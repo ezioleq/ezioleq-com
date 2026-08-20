@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { rehypeFigures } from './src/plugins/rehype-figures.js';
@@ -20,7 +21,7 @@ function remarkReadingTime() {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://ezioleq.com',
-  integrations: [mdx()],
+  integrations: [mdx(), sitemap()],
   image: {
     layout: 'constrained',
     responsiveStyles: true,
