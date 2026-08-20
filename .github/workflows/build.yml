@@ -40,4 +40,12 @@ jobs:
           name: dist
           path: dist
       - name: Deploy via rsync
-        run: 'echo "dist/ ready: $(find dist -type f | wc -l) files"'
+        uses: burnett01/rsync-deployments@v9
+        with:
+          switches: -avzr --delete
+          path: dist/
+          remote_path: ${{ secrets.DEPLOY_PATH }}
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_port: ${{ secrets.DEPLOY_PORT }}
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          remote_key: ${{ secrets.DEPLOY_KEY }}
