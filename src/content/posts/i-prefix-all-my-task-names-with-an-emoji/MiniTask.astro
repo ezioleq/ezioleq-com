@@ -1,0 +1,109 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  done: boolean;
+}
+
+const { title, description, done } = Astro.props;
+---
+
+<label class="mini-task">
+  <input type="checkbox" checked={done} />
+  <span class="box"></span>
+  <span class="text">
+    <span class="title">{title}</span>
+    <span class="description">{description}</span>
+  </span>
+</label>
+
+<style>
+  .mini-task {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.25rem 0;
+    cursor: pointer;
+    user-select: none;
+    /* max-width: 300px; */
+  }
+
+  .mini-task input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .box {
+    flex-shrink: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    border: 2px solid var(--text-muted);
+    border-radius: 50%;
+    transition:
+      background-color 0.15s,
+      border-color 0.15s;
+  }
+
+  .mini-task:hover .box {
+    /* border-color: var(--text-color); */
+    border-color: var(--link-color);
+    /* background-color: rgba(236, 236, 236, 0.15); */
+  }
+
+  .mini-task input:focus-visible + .box {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+  }
+
+  .mini-task input:checked + .box {
+    /* border-color: var(--text-color); */
+    border-color: var(--link-color);
+    /* background-color: var(--text-color); */
+    background-color: var(--link-color);
+  }
+
+  .mini-task input:checked + .box::after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 8px;
+    margin: 2px auto 0;
+    border: solid var(--bg-color);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .title {
+    color: var(--text-color);
+    font-weight: 500;
+    line-height: 1.5;
+    transition: color 0.15s;
+  }
+
+  .description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+
+  .mini-task input:checked ~ .text .title,
+  .mini-task input:checked ~ .text .description {
+    text-decoration: line-through;
+  }
+
+  .mini-task input:checked ~ .text .title {
+    color: var(--text-muted);
+  }
+</style>
