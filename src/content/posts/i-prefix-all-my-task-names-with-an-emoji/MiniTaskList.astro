@@ -1,0 +1,26 @@
+<div class="wrap"><slot /></div>
+
+<style>
+  .wrap :global(th, td) {
+    border-right: 1px solid var(--table-border);
+    border-bottom: 0;
+  }
+
+  .wrap :global(td) {
+    padding: 0 1rem;
+    border-right: 1px solid var(--table-border);
+    border-bottom: 0;
+  }
+
+  .wrap :global(tr:first-child > td) {
+    padding-top: 0.5rem;
+  }
+
+  .wrap :global(tr:last-child > td) {
+    padding-bottom: 0.5rem;
+  }
+
+  .wrap :global(tr:nth-child(even)) {
+    background-color: transparent;
+  }
+</style>
