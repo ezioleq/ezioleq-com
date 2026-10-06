@@ -1,17 +1,21 @@
-import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { rehypeFigures } from './src/plugins/rehype-figures.js';
+import { defineConfig } from "astro/config";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeExternalLinks from "rehype-external-links";
+import { rehypeFigures } from "./src/plugins/rehype-figures.js";
 
 function remarkReadingTime() {
   return function (tree, file) {
-    const textOnPage = typeof file.value === 'string' ? file.value : String(file.value);
-    const words = textOnPage.split(/\s+/).filter(word => word.length > 0).length;
+    const textOnPage =
+      typeof file.value === "string" ? file.value : String(file.value);
+    const words = textOnPage
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
     const readingTime = Math.ceil(words / 200) || 1;
     if (file.data.astro) {
-      if(!file.data.astro.frontmatter) file.data.astro.frontmatter = {};
+      if (!file.data.astro.frontmatter) file.data.astro.frontmatter = {};
       file.data.astro.frontmatter.wordCount = words;
       file.data.astro.frontmatter.readingTime = readingTime;
     }
@@ -20,10 +24,10 @@ function remarkReadingTime() {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ezioleq.com',
+  site: "https://ezioleq.com",
   integrations: [mdx(), sitemap()],
   image: {
-    layout: 'constrained',
+    layout: "constrained",
     responsiveStyles: true,
   },
   markdown: {
@@ -31,13 +35,23 @@ export default defineConfig({
     rehypePlugins: [
       rehypeSlug,
       rehypeFigures,
-      [rehypeAutolinkHeadings, {
-        behavior: 'wrap',
-        properties: {
-          className: ['heading-link'],
-          title: 'Copy link to clipboard',
-        }
-      }]
-    ]
-  }
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+          rel: ["noopener", "noreferrer"],
+        },
+      ],
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+          properties: {
+            className: ["heading-link"],
+            title: "Copy link to clipboard",
+          },
+        },
+      ],
+    ],
+  },
 });
