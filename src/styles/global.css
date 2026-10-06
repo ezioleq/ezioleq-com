@@ -192,6 +192,12 @@ h6 {
   padding-bottom: 0.3em;
 }
 
+.post-content hr {
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  margin: 1.5rem 0;
+}
+
 .heading-link {
   text-decoration: none;
   color: inherit;
